@@ -38,18 +38,177 @@
 
     <style>
         /* Estilos da tela de carregamento */
-        #loading-screen { position: fixed; inset: 0; background-color: #f3f4f6; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 50; transition: opacity 0.5s ease-out; }
-        #loading-screen .content { text-align: center; }
-        #loading-screen h1 { font-size: 3rem; font-weight: 700; color: #1f2937; }
-        #loading-screen #progress-bar-container { width: 16rem; background-color: #e5e7eb; border-radius: 9999px; height: 0.625rem; margin-top: 2rem; overflow: hidden; }
-        #loading-screen .progress-bar-inner { background-color: #2563eb; height: 100%; border-radius: 9999px; animation: loading-animation 2s ease-in-out infinite; }
-        #loading-screen #loading-text { color: #6b7280; margin-top: 1rem; }
-        @keyframes loading-animation { 0% { width: 0%; } 50% { width: 100%; } 100% { width: 0%; } }
+        #loading-screen { 
+            position: fixed; inset: 0; 
+            background-color: #f3f4f6; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            z-index: 50; 
+            transition: opacity 0.5s ease-out; 
+            padding-bottom: 5rem;
+        }
+        #loading-screen .content { 
+            text-align: center; 
+            margin-top: 1rem;
+        }
+        
+        .loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+        .loader {
+          width: 15px;
+          aspect-ratio: 1;
+          border-radius: 50%;
+          animation: l5 1s infinite linear alternate;
+        }
+        @keyframes l5 {
+            0%  {box-shadow: 20px 0 #000, -20px 0 #0002;background: #000 }
+            33% {box-shadow: 20px 0 #000, -20px 0 #0002;background: #0002}
+            66% {box-shadow: 20px 0 #0002,-20px 0 #000; background: #0002}
+            100%{box-shadow: 20px 0 #0002,-20px 0 #000; background: #000 }
+        }
+        .loader-delayed {
+            animation-delay: 1.7s;
+        }
+        
+        /* --- ESTILOS DA LOGO ANIMADA --- */
+        .svg-d {
+            font-size: 19px;
+            font-family: serif;
+            font-style: italic;
+            fill: #111827;
+            opacity: 0;
+            animation: curtain-rise 0.6s ease-out 0.5s forwards;
+        }
+        #integral-path {
+            fill: none;
+            stroke: #111827;
+            stroke-width: 1.3;
+            stroke-linecap: round;
+            stroke-dasharray: 30.1; 
+            stroke-dashoffset: 30.1;
+        }
+        @-webkit-keyframes animate-svg-stroke-1 {
+          0% {
+            stroke-dashoffset: 30.006275177001953px;
+            stroke-dasharray: 30.006275177001953px;
+          }
+          100% {
+            stroke-dashoffset: 0;
+            stroke-dasharray: 30.006275177001953px;
+          }
+        }
+        @keyframes animate-svg-stroke-1 {
+          0% {
+            stroke-dashoffset: 30.006275177001953px;
+            stroke-dasharray: 30.006275177001953px;
+          }
+          100% {
+            stroke-dashoffset: 0;
+            stroke-dasharray: 30.006275177001953px;
+          }
+        }
+        .svg-elem-1 {
+          -webkit-animation: animate-svg-stroke-1 1s cubic-bezier(0.95, 0.05, 0.795, 0.035) 0s both;
+                  animation: animate-svg-stroke-1 1s cubic-bezier(0.95, 0.05, 0.795, 0.035) 0s both;
+        }
+        @keyframes curtain-rise {
+            0% {
+                clip-path: inset(100% 0 0 0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            100% {
+                clip-path: inset(0 0 0 0);
+                opacity: 1;
+            }
+        }
+        .svg-name-path {
+            fill: transparent; 
+        }
+        @-webkit-keyframes animate-svg-fill-name-1 {
+          0% { fill: transparent; }
+          100% { fill: rgb(51, 51, 51); }
+        }
+        @keyframes animate-svg-fill-name-1 {
+          0% { fill: transparent; }
+          100% { fill: rgb(51, 51, 51); }
+        }
+        .svg-name-1 {
+          -webkit-animation: animate-svg-fill-name-1 0.7s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.8s both;
+                  animation: animate-svg-fill-name-1 0.7s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.8s both;
+        }
+        @-webkit-keyframes animate-svg-fill-name-2 {
+          0% { fill: transparent; }
+          100% { fill: rgb(51, 51, 51); }
+        }
+        @keyframes animate-svg-fill-name-2 {
+          0% { fill: transparent; }
+          100% { fill: rgb(51, 51, 51); }
+        }
+        .svg-name-2 {
+          -webkit-animation: animate-svg-fill-name-2 0.7s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.9s both;
+                  animation: animate-svg-fill-name-2 0.7s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.9s both;
+        }
+        @-webkit-keyframes animate-svg-fill-name-3 {
+          0% { fill: transparent; }
+          100% { fill: rgb(51, 51, 51); }
+        }
+        @keyframes animate-svg-fill-name-3 {
+          0% { fill: transparent; }
+          100% { fill: rgb(51, 51, 51); }
+        }
+        .svg-name-3 {
+          -webkit-animation: animate-svg-fill-name-3 0.7s cubic-bezier(0.785, 0.135, 0.15, 0.86) 1s both;
+                  animation: animate-svg-fill-name-3 0.7s cubic-bezier(0.785, 0.135, 0.15, 0.86) 1s both;
+        }
+        /* FIM DOS ESTILOS DA LOGO ANIMADA */
 
         /* Estilos gerais */
         body { font-family: 'Inter', sans-serif; }
         .btn-hover:hover { background-color: #1d4ed8; }
-        .keyboard-btn { @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 rounded-lg transition-all duration-150 ease-in-out flex items-center justify-center dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600; }
+        .keyboard-btn { 
+            background-color: #265894;
+            border-radius: 20px;
+            border: 1px solid #030303;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            padding: 7px 10px;
+            text-decoration: none;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: all 0.1s ease;
+            @apply font-bold flex items-center justify-center; 
+        }
+        .keyboard-btn:hover {
+            background-color: #0a0a0a;
+        }
+        .keyboard-btn:active {
+            position: relative;
+            top: 1px;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+        }
+        .keyboard-btn.bg-green-200 { background-color: #34d399; color: #111827; }
+        .keyboard-btn.bg-green-200:hover { background-color: #10b981; }
+        .keyboard-btn.bg-gray-300 { background-color: #9ca3af; color: #111827; }
+        .keyboard-btn.bg-gray-300:hover { background-color: #6b7280; }
+        .keyboard-btn.bg-white { background-color: #ffffff; color: #111827; }
+        .keyboard-btn.bg-white:hover { background-color: #e5e7eb; }
+        .keyboard-btn.bg-red-200 { background-color: #f87171; color: #111827; }
+        .keyboard-btn.bg-red-200:hover { background-color: #ef4444; }
+
+
         #resultOutput img { max-width: 100%; height: auto; background-color: white; padding: 0.5rem; border-radius: 0.5rem; }
         #equation-editor { @apply w-full bg-white border border-gray-300 rounded-lg min-h-[70px] p-3 text-2xl dark:bg-gray-800 dark:border-gray-600; }
         .dark #equation-editor { color: white; }
@@ -59,9 +218,12 @@
         #calculator-view, #history-view, #options-view { transition: opacity 0.6s ease-in-out; }
 
         /* Estilos do Modal de Scan */
-        #scan-modal.hidden { display: none; }
-        #scan-modal-content { transform: scale(0.95); opacity: 0; transition: transform 0.3s ease-out, opacity 0.3s ease-out; }
-        #scan-modal:not(.hidden) #scan-modal-content { transform: scale(1); opacity: 1; }
+        #scan-modal.hidden, #limit-modal.hidden, #steps-modal.hidden { display: none; }
+        #scan-modal-content, #limit-modal-content, #steps-modal-content { transform: scale(0.95); opacity: 0; transition: transform 0.3s ease-out, opacity 0.3s ease-out; }
+        #scan-modal:not(.hidden) #scan-modal-content,
+        #limit-modal:not(.hidden) #limit-modal-content,
+        #steps-modal:not(.hidden) #steps-modal-content { transform: scale(1); opacity: 1; }
+        
         #image-preview, #camera-stream { max-height: 40vh; width: 100%; object-fit: contain; }
         .tab-btn.active { @apply bg-blue-600 text-white; }
         .tab-btn { @apply w-full text-center p-3 rounded-lg font-semibold bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 transition-colors; }
@@ -73,7 +235,6 @@
             font-size: 1.35rem;
             margin: 0;
         }
-        /* NOVO: Esconde o editor MathQuill mas o mantém funcional */
         #equation-editor-wrapper {
             position: absolute;
             opacity: 0;
@@ -82,24 +243,20 @@
             width: 0;
             overflow: hidden;
         }
-        /* NOVOS Estilos para a Navegação Inferior */
+        
+        /* --- Estilos da Navegação Inferior (Corrigido) --- */
         .nav-btn {
-            /* Adicionado text-center para os nomes, e cor dark mais clara */
-             @apply flex flex-col items-center justify-center gap-0 py-1 px-3 rounded-xl text-gray-600 dark:text-gray-100 transition-all duration-200 flex-1 text-center leading-tight;
-        }
-        .nav-btn svg {
-             /* Adicionada regra explícita para cor do SVG */
-            @apply text-gray-600 dark:text-gray-100;
+             @apply flex flex-col items-center justify-center gap-0 py-1 px-3 rounded-xl transition-all duration-200 flex-1 text-center leading-tight;
         }
         .nav-btn.active {
             @apply text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/50;
         }
         .nav-btn.active svg {
-            /* Adicionada regra explícita para cor do SVG ativo */
-            @apply text-blue-600 dark:text-blue-400;
             stroke-width: 2.5;
         }
-        /* NOVOS Estilos para a View de Histórico */
+        /* Fim da Correção da Navegação */
+        
+        /* Estilos da View de Histórico */
         #history-list-container .history-card {
             @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4 space-y-3;
         }
@@ -113,7 +270,7 @@
             @apply flex-1 min-w-0 overflow-x-auto;
         }
         #history-list-container .history-card-fn .katex-display {
-            margin: 0; /* Corrige margem do KaTeX */
+            margin: 0;
         }
         #history-list-container .history-card-badges {
             @apply flex flex-wrap gap-1.5;
@@ -124,10 +281,10 @@
         #history-list-container .history-card-result img {
             max-width: 100%;
             height: auto;
-            background-color: transparent; /* Imagem já tem fundo branco */
+            background-color: transparent;
             padding: 0;
             border-radius: 0;
-            margin: 0 auto; /* Centraliza a imagem do resultado */
+            margin: 0 auto;
         }
         .filter-btn {
             @apply p-2 px-4 rounded-lg text-sm font-semibold transition-colors bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200;
@@ -135,21 +292,141 @@
         .filter-btn.active {
             @apply bg-blue-600 text-white;
         }
+        
+        /* --- Estilos dos Seletores de Operação (Corrigido) --- */
+        /* Remove o @apply problemático */
+        .radio-symbol-wrapper {
+             /* Apenas cor base, o @apply foi movido para o HTML */
+             color: rgb(17, 24, 39); /* text-gray-900 */
+        }
+        .dark .radio-symbol-wrapper {
+            color: rgb(249, 250, 251); /* dark:text-gray-100 */
+        }
+        #operation-selector-label .katex {
+            font-size: 1.5rem !important;
+        }
+        #operation-selector-label.integral .katex {
+             font-size: 1.7rem !important;
+        }
+        /* Fim da Correção dos Seletores */
 
+        /* Estilos dos Filtros de Histórico (Corrigido) */
+        .filter-symbol .katex {
+            font-size: 1.1rem; /* Tamanho do símbolo */
+        }
+        .filter-btn {
+            /* Garante que o KaTeX herde a cor no dark mode */
+            @apply text-gray-700 dark:text-gray-200;
+        }
+        .filter-btn.active {
+             /* Garante que o KaTeX herde a cor ativa */
+            @apply text-white;
+        }
+        /* Fim da Correção dos Filtros */
+
+        
+        /* Estilos do Modal Passo a Passo (IA) */
+        #steps-timeline-container .step {
+            @apply relative pl-8 pb-4;
+        }
+        #steps-timeline-container .step:last-child {
+            @apply pb-0;
+        }
+        #steps-timeline-container .step-line {
+            @apply absolute left-3 top-5 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700;
+        }
+        #steps-timeline-container .step:last-child .step-line {
+            display: none;
+        }
+        #steps-timeline-container .step-number {
+            @apply absolute left-0 top-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-green-500;
+        }
+        #steps-timeline-container .step-badge {
+            @apply mb-1.5 text-xs font-medium px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300;
+        }
+        #steps-timeline-container .step-description {
+            @apply text-xs mb-1.5 leading-relaxed text-gray-600 dark:text-gray-400;
+        }
+        #steps-timeline-container .step-expression {
+            @apply p-2.5 rounded-lg bg-gray-50 dark:bg-gray-700/50 overflow-x-auto;
+        }
+        #steps-timeline-container .step-expression .katex-display {
+            margin: 0;
+            font-size: 1rem;
+        }
+        
+        /* NOVO: Estilos para a biblioteca derivainteg (nosso parser) */
+        #steps-timeline-container .derivainteg-step {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #ddd;
+        }
+        #steps-timeline-container .derivainteg-step:last-child {
+            border-bottom: none;
+        }
+        #steps-timeline-container .derivainteg-step-title {
+            font-weight: bold;
+            color: #005a9c; /* Cor do protótipo antigo */
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+        #steps-timeline-container .derivainteg-step ul {
+            margin-left: 20px;
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        /* Fim dos estilos da derivainteg */
+
+        /* NOVO: Estilos para botões de rádio de Notação (Opções) */
+        .notation-radio-label {
+            @apply flex items-center gap-3 p-3 border border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer has-[:checked]:bg-blue-50 has-[:checked]:dark:bg-blue-900/50 has-[:checked]:border-blue-500;
+        }
+        .notation-radio-label .notation-symbol .katex {
+            font-size: 1.1rem; /* Tamanho do símbolo */
+        }
+        /* Fim dos Estilos de Notação */
+        
     </style>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 pb-20"> <!-- Classes de centralização removidas, pb-20 adicionado -->
+<body class="bg-gray-100 dark:bg-gray-900 pb-20">
 
     <!-- Tela de Carregamento -->
     <div id="loading-screen">
+        <div class="flex flex-col items-center justify-center">
+            <div id="logo-container" class="-mt-8"> 
+                <svg width="160" height="160" viewbox="-10 0 34 14">
+                    <text x="-3" y="17" class="svg-d">D</text>
+                    <g 
+                        transform="skewX(-10) rotate(-20)"
+                        transform-origin="12 12"
+                    >
+                        <path 
+                            id="integral-path"
+                            class="svg-elem-1" 
+                            d="M5,19l.38.76a2.24,2.24,0,0,0,2,1.24h0a2.24,2.24,0,0,0,2.13-1.53L12,12l2.49-7.47A2.24,2.24,0,0,1,16.62,3h0a2.24,2.24,0,0,1,2,1.24L19,5"
+                        />
+                    </g>
+                </svg>
+            </div>
+            <div id="logo-name-container">
+                <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="60 250 370 80" 
+                    class="w-48 fill-gray-900"
+                >
+                    <path class="svg-name-path svg-name-1" d="M 77.11 312.674 Q 73.344 312.674 70.696 310.819 Q 68.048 308.964 66.674 305.693 Q 65.301 302.422 65.301 298.146 Q 65.301 292.51 67.297 289.012 Q 69.294 285.515 72.933 283.872 Q 76.572 282.23 81.528 282.23 Q 83.227 282.23 84.346 282.4 Q 85.465 282.57 85.946 282.711 L 85.946 272.148 Q 85.946 271.468 86.229 271.1 Q 87.419 269.542 89.713 267.73 Q 90.109 267.446 90.421 267.446 Q 90.789 267.446 91.129 267.73 Q 92.347 268.664 93.182 269.486 Q 94.017 270.307 94.612 271.1 Q 94.895 271.468 94.895 272.148 L 94.895 310.663 Q 94.895 311.201 94.527 311.584 Q 94.159 311.966 93.593 311.966 L 89.373 311.966 Q 88.92 311.966 88.566 311.839 Q 88.212 311.711 87.9 311.343 L 86.144 309.077 L 85.946 309.077 Q 85.578 309.644 84.629 310.508 Q 83.681 311.371 81.882 312.023 Q 80.084 312.674 77.11 312.674 Z M 79.857 305.424 Q 82.406 305.424 83.865 304.461 Q 85.323 303.498 85.946 302.026 L 85.946 290.159 Q 85.493 289.876 84.445 289.48 Q 83.397 289.083 81.5 289.083 Q 77.988 289.083 76.232 291.377 Q 74.476 293.671 74.476 297.551 Q 74.476 301.572 75.949 303.498 Q 77.422 305.424 79.857 305.424 Z M 116.749 312.674 Q 111.963 312.674 108.423 311.131 Q 104.883 309.587 102.928 306.33 Q 100.974 303.073 100.974 297.919 Q 100.974 290.188 104.939 286.223 Q 108.904 282.258 115.474 282.258 Q 119.751 282.258 122.71 283.787 Q 125.67 285.317 127.213 288.007 Q 128.757 290.697 128.757 294.153 Q 128.757 297.523 127.029 298.854 Q 125.302 300.185 121.988 300.185 L 109.839 300.185 Q 110.065 303.102 111.977 304.631 Q 113.888 306.16 117.174 306.16 Q 119.779 306.16 121.351 305.382 Q 122.923 304.603 123.546 304.15 Q 124.084 303.753 124.763 303.781 Q 125.302 303.781 126.307 303.994 Q 127.312 304.206 128.303 304.773 Q 129.011 305.141 129.011 305.792 Q 129.011 306.16 128.87 306.84 Q 128.785 307.237 128.587 307.987 Q 128.388 308.737 128.077 309.389 Q 127.907 309.7 127.539 309.984 Q 126.972 310.38 125.712 311.031 Q 124.452 311.683 122.271 312.178 Q 120.091 312.674 116.749 312.674 Z M 109.782 294.379 L 119.014 294.379 Q 120.459 294.379 120.459 293.048 Q 120.459 291.037 119.198 289.664 Q 117.938 288.29 115.418 288.29 Q 112.671 288.29 111.382 290.046 Q 110.094 291.802 109.782 294.379 Z M 143.933 288.347 L 144.046 288.347 Q 146.17 282.456 151.693 282.456 Q 152.401 282.456 152.854 282.527 Q 153.307 282.598 153.477 282.654 Q 153.902 282.796 153.902 283.306 L 153.902 290.131 Q 153.902 291.009 152.882 290.612 Q 152.543 290.471 151.905 290.315 Q 151.268 290.159 150.135 290.159 Q 147.218 290.159 145.576 292.298 Q 143.933 294.436 143.933 298.117 L 143.933 310.465 Q 143.933 311.315 143.579 311.64 Q 143.225 311.966 142.376 311.966 L 136.542 311.966 Q 135.692 311.966 135.338 311.64 Q 134.984 311.315 134.984 310.465 L 134.984 286.733 Q 134.984 286.053 135.267 285.685 Q 135.862 284.892 136.697 284.07 Q 137.533 283.249 138.751 282.315 Q 138.977 282.145 139.204 282.088 Q 139.43 282.031 139.6 282.031 Q 139.997 282.031 140.393 282.315 Q 142.744 284.155 143.678 285.458 Q 143.933 285.798 143.933 286.251 Z M 156.818 273.45 Q 156.818 273.082 157.045 272.799 Q 157.271 272.516 157.639 272.063 Q 158.432 271.156 159.48 270.151 Q 160.528 269.146 161.604 268.211 Q 162.284 267.673 162.624 267.673 Q 162.964 267.673 163.672 268.211 Q 165.966 270.194 167.58 272.063 Q 167.948 272.487 168.189 272.785 Q 168.43 273.082 168.43 273.45 Q 168.43 273.819 168.189 274.102 Q 167.948 274.385 167.552 274.866 Q 166.787 275.744 165.767 276.75 Q 164.748 277.755 163.672 278.661 Q 163.275 279.001 163.049 279.1 Q 162.822 279.199 162.624 279.199 Q 162.426 279.199 162.213 279.1 Q 162.001 279.001 161.548 278.661 Q 160.415 277.755 159.424 276.75 Q 158.432 275.744 157.639 274.81 Q 157.271 274.357 157.045 274.088 Q 156.818 273.819 156.818 273.45 Z M 167.07 310.465 Q 167.07 311.315 166.716 311.64 Q 166.362 311.966 165.513 311.966 L 159.679 311.966 Q 158.829 311.966 158.475 311.64 Q 158.121 311.315 158.121 310.465 L 158.121 284.467 Q 158.121 283.617 158.475 283.292 Q 158.829 282.966 159.679 282.966 L 165.513 282.966 Q 166.362 282.966 166.716 283.292 Q 167.07 283.617 167.07 284.467 Z M 180.881 309.332 Q 179.324 306.868 177.809 303.654 Q 176.294 300.44 175.062 297.14 Q 173.83 293.841 173.093 291.108 Q 172.357 288.375 172.357 286.903 Q 172.357 286.336 172.669 285.968 Q 173.971 284.354 176.378 282.598 Q 176.803 282.315 177.143 282.315 Q 177.511 282.315 177.908 282.598 Q 179.211 283.532 180.103 284.354 Q 180.995 285.175 181.618 285.968 Q 181.929 286.336 181.929 287.016 L 181.929 286.874 Q 181.929 288.715 182.595 291.703 Q 183.26 294.691 184.421 298.004 Q 185.583 301.318 187.112 304.093 L 187.253 304.093 Q 188.528 301.997 189.519 299.562 Q 190.51 297.126 191.19 294.691 Q 191.87 292.255 192.224 290.216 Q 192.578 288.177 192.578 286.903 L 192.578 287.016 Q 192.578 286.336 192.861 285.968 Q 193.512 285.175 194.39 284.354 Q 195.268 283.532 196.514 282.598 Q 196.911 282.315 197.251 282.315 Q 197.647 282.315 197.987 282.598 Q 199.261 283.532 200.139 284.354 Q 201.017 285.175 201.64 285.968 Q 201.923 286.336 201.923 286.959 Q 201.895 288.488 201.13 291.25 Q 200.366 294.011 199.077 297.31 Q 197.789 300.61 196.203 303.796 Q 194.617 306.982 192.974 309.332 Q 191.983 310.777 191.19 311.371 Q 190.397 311.966 188.443 311.966 L 185.441 311.966 Q 183.402 311.966 182.623 311.4 Q 181.844 310.833 180.881 309.332 Z M 172.357 286.874 L 172.357 286.903 Q 172.357 286.959 172.357 287.016 Z M 201.923 286.903 L 201.923 287.016 L 201.923 286.959 Q 201.923 286.931 201.923 286.903 Z M 214.087 312.674 Q 209.924 312.674 207.474 310.338 Q 205.024 308.001 205.024 303.895 Q 205.024 301.771 205.803 299.944 Q 206.582 298.117 208.522 296.716 Q 210.462 295.314 213.959 294.464 Q 217.457 293.614 222.894 293.473 Q 222.894 290.896 221.606 289.763 Q 220.317 288.63 217.74 288.63 Q 215.418 288.63 213.945 289.423 Q 212.472 290.216 212.104 290.499 Q 211.708 290.839 211.141 290.754 Q 210.377 290.641 209.513 290.358 Q 208.649 290.074 207.658 289.706 Q 207.516 289.65 207.346 289.522 Q 207.177 289.395 207.148 289.14 Q 207.148 288.998 207.177 288.786 Q 207.205 288.573 207.318 288.007 Q 207.431 287.441 207.658 286.605 Q 207.885 285.77 208.083 285.317 Q 208.338 284.835 208.932 284.41 Q 209.414 284.014 211.849 283.136 Q 214.285 282.258 218.901 282.258 Q 231.617 282.258 231.617 294.634 L 231.617 310.663 Q 231.617 311.201 231.32 311.584 Q 231.022 311.966 230.314 311.966 L 226.066 311.966 Q 225.613 311.966 225.259 311.839 Q 224.905 311.711 224.594 311.343 L 222.838 309.077 L 222.639 309.077 Q 221.337 310.975 219.142 311.824 Q 216.947 312.674 214.087 312.674 Z M 217.202 306.104 Q 219.807 306.104 221.138 304.773 Q 222.469 303.442 222.838 302.026 L 222.838 298.882 Q 218.901 298.882 216.933 299.491 Q 214.965 300.1 214.313 301.077 Q 213.662 302.054 213.662 303.187 Q 213.662 304.829 214.681 305.466 Q 215.701 306.104 217.202 306.104 Z M 241.153 285.118 L 241.635 270.08 Q 241.89 265.747 243.051 262.887 Q 243.815 261.046 245.161 260.126 Q 246.506 259.205 247.78 259.205 Q 249.196 259.205 250.258 260.154 Q 251.32 261.103 251.32 262.236 Q 251.32 263.567 250.57 264.374 Q 249.819 265.181 248.715 265.181 Q 247.724 265.181 246.562 264.161 Q 245.911 263.595 245.43 263.595 Q 244.948 263.595 244.622 264.006 Q 244.297 264.416 244.297 265.407 Q 244.297 266.597 244.552 269.514 Q 245.6 281.125 245.6 288.347 Q 245.6 290.244 245.146 304.999 Q 244.92 313.354 242.598 316.299 Q 241.068 318.196 238.803 318.196 Q 237.33 318.196 236.395 317.234 Q 235.461 316.271 235.461 314.77 Q 235.461 313.495 236.183 312.731 Q 236.905 311.966 238.01 311.966 Q 239.143 311.966 239.964 312.872 Q 240.785 313.779 241.352 313.779 Q 241.833 313.779 242.144 313.382 Q 242.456 312.986 242.456 312.051 Q 242.456 310.862 242.201 308.653 Q 241.153 299.732 241.153 285.118 Z M 283.213 293.926 L 283.213 310.465 Q 283.213 311.315 282.859 311.64 Q 282.505 311.966 281.656 311.966 L 275.822 311.966 Q 274.972 311.966 274.618 311.64 Q 274.264 311.315 274.264 310.465 L 274.264 295.399 Q 274.264 292.312 272.961 290.896 Q 271.659 289.48 269.421 289.48 Q 267.184 289.48 265.98 290.443 Q 264.777 291.405 264.125 292.878 L 264.125 310.465 Q 264.125 311.315 263.771 311.64 Q 263.417 311.966 262.568 311.966 L 256.734 311.966 Q 255.884 311.966 255.53 311.64 Q 255.176 311.315 255.176 310.465 L 255.176 286.733 Q 255.176 286.053 255.459 285.685 Q 256.054 284.892 256.89 284.07 Q 257.725 283.249 258.943 282.315 Q 259.311 282.031 259.651 282.031 Q 259.962 282.031 260.359 282.315 Q 261.548 283.249 262.398 284.099 Q 263.248 284.948 263.899 285.855 L 264.04 285.855 Q 264.522 285.232 265.485 284.396 Q 266.448 283.561 268.189 282.909 Q 269.931 282.258 272.65 282.258 Q 275.312 282.258 277.719 283.334 Q 280.126 284.41 281.67 286.959 Q 283.213 289.508 283.213 293.926 Z M 301.752 312.674 Q 292.293 312.674 292.293 302.847 L 292.293 289.565 L 289.093 289.565 Q 288.243 289.565 287.918 289.211 Q 287.592 288.857 287.592 288.007 L 287.592 284.524 Q 287.592 283.674 287.918 283.32 Q 288.243 282.966 289.093 282.966 L 292.293 282.966 L 292.293 278.406 Q 292.293 277.727 292.576 277.359 Q 293.766 275.801 296.06 273.988 Q 296.456 273.705 296.768 273.705 Q 297.108 273.705 297.447 273.988 Q 298.665 274.923 299.501 275.744 Q 300.336 276.566 300.931 277.359 Q 301.214 277.727 301.214 278.406 L 301.214 282.966 L 306.227 282.966 Q 307.076 282.966 307.402 283.32 Q 307.728 283.674 307.728 284.524 L 307.728 288.007 Q 307.728 288.857 307.402 289.211 Q 307.076 289.565 306.227 289.565 L 301.214 289.565 L 301.214 301.289 Q 301.214 305.82 304.499 305.82 Q 305.009 305.82 305.434 305.721 Q 305.859 305.622 306.17 305.509 Q 306.765 305.282 307.006 305.339 Q 307.246 305.396 307.444 305.962 L 309.087 310.352 Q 309.342 311.06 308.747 311.371 Q 308.322 311.57 306.694 312.122 Q 305.066 312.674 301.752 312.674 Z M 327.469 312.674 Q 322.683 312.674 319.143 311.131 Q 315.603 309.587 313.649 306.33 Q 311.695 303.073 311.695 297.919 Q 311.695 290.188 315.66 286.223 Q 319.625 282.258 326.195 282.258 Q 330.471 282.258 333.431 283.787 Q 336.39 285.317 337.934 288.007 Q 339.477 290.697 339.477 294.153 Q 339.477 297.523 337.75 298.854 Q 336.022 300.185 332.709 300.185 L 320.559 300.185 Q 320.786 303.102 322.697 304.631 Q 324.609 306.16 327.894 306.16 Q 330.5 306.16 332.071 305.382 Q 333.643 304.603 334.266 304.15 Q 334.804 303.753 335.484 303.781 Q 336.022 303.781 337.027 303.994 Q 338.033 304.206 339.024 304.773 Q 339.732 305.141 339.732 305.792 Q 339.732 306.16 339.59 306.84 Q 339.505 307.237 339.307 307.987 Q 339.109 308.737 338.797 309.389 Q 338.627 309.7 338.259 309.984 Q 337.693 310.38 336.433 311.031 Q 335.172 311.683 332.992 312.178 Q 330.811 312.674 327.469 312.674 Z M 320.502 294.379 L 329.735 294.379 Q 331.179 294.379 331.179 293.048 Q 331.179 291.037 329.919 289.664 Q 328.659 288.29 326.138 288.29 Q 323.391 288.29 322.103 290.046 Q 320.814 291.802 320.502 294.379 Z M 373.725 285.685 L 373.725 308.653 Q 373.725 316.922 369.009 321.255 Q 364.294 325.588 356.081 325.588 Q 352.683 325.588 350.7 325.092 Q 348.718 324.597 347.698 324.144 Q 347.047 323.832 346.849 323.492 Q 346.566 323.039 346.212 322.161 Q 345.858 321.283 345.546 320.236 Q 345.461 319.839 345.518 319.641 Q 345.631 319.358 345.943 319.046 Q 346.452 318.536 347.401 317.857 Q 348.35 317.177 348.86 316.979 Q 349.398 316.78 349.851 317.035 Q 350.587 317.432 351.961 317.927 Q 353.334 318.423 355.826 318.423 Q 359.791 318.423 362.283 316.384 Q 364.776 314.345 364.776 310.097 L 364.776 309.077 L 364.662 309.077 Q 364.039 309.87 363.048 310.692 Q 362.057 311.513 360.485 312.079 Q 358.913 312.646 356.449 312.646 Q 352.173 312.646 349.44 310.791 Q 346.707 308.936 345.419 305.679 Q 344.13 302.422 344.13 298.259 Q 344.13 293.699 345.631 290.074 Q 347.132 286.449 350.672 284.34 Q 354.212 282.23 360.358 282.23 Q 364.039 282.23 366.546 282.768 Q 369.052 283.306 370.751 284.099 Q 372.45 284.892 373.725 285.685 Z M 360.046 289.083 Q 356.761 289.083 355.033 291.292 Q 353.306 293.501 353.306 298.146 Q 353.306 305.424 359.31 305.424 Q 361.66 305.424 362.906 304.461 Q 364.153 303.498 364.776 302.026 L 364.776 290.329 Q 364.153 289.876 363.02 289.48 Q 361.887 289.083 360.046 289.083 Z M 390.327 288.347 L 390.441 288.347 Q 392.565 282.456 398.087 282.456 Q 398.795 282.456 399.248 282.527 Q 399.701 282.598 399.871 282.654 Q 400.296 282.796 400.296 283.306 L 400.296 290.131 Q 400.296 291.009 399.277 290.612 Q 398.937 290.471 398.3 290.315 Q 397.662 290.159 396.53 290.159 Q 393.613 290.159 391.97 292.298 Q 390.327 294.436 390.327 298.117 L 390.327 310.465 Q 390.327 311.315 389.973 311.64 Q 389.619 311.966 388.77 311.966 L 382.936 311.966 Q 382.086 311.966 381.732 311.64 Q 381.378 311.315 381.378 310.465 L 381.378 286.733 Q 381.378 286.053 381.661 285.685 Q 382.256 284.892 383.092 284.07 Q 383.927 283.249 385.145 282.315 Q 385.371 282.145 385.598 282.088 Q 385.824 282.031 385.994 282.031 Q 386.391 282.031 386.787 282.315 Q 389.138 284.155 390.072 285.458 Q 390.327 285.798 390.327 286.251 Z M 411.736 312.674 Q 407.573 312.674 405.123 310.338 Q 402.674 308.001 402.674 303.895 Q 402.674 301.771 403.453 299.944 Q 404.231 298.117 406.171 296.716 Q 408.111 295.314 411.609 294.464 Q 415.106 293.614 420.544 293.473 Q 420.544 290.896 419.255 289.763 Q 417.967 288.63 415.39 288.63 Q 413.067 288.63 411.595 289.423 Q 410.122 290.216 409.754 290.499 Q 409.357 290.839 408.791 290.754 Q 408.026 290.641 407.163 290.358 Q 406.299 290.074 405.308 289.706 Q 405.166 289.65 404.996 289.522 Q 404.826 289.395 404.798 289.14 Q 404.798 288.998 404.826 288.786 Q 404.854 288.573 404.968 288.007 Q 405.081 287.441 405.308 286.605 Q 405.534 285.77 405.732 285.317 Q 405.987 284.835 406.582 284.41 Q 407.063 284.014 409.499 283.136 Q 411.935 282.258 416.551 282.258 Q 429.267 282.258 429.267 294.634 L 429.267 310.663 Q 429.267 311.201 428.969 311.584 Q 428.672 311.966 427.964 311.966 L 423.716 311.966 Q 423.263 311.966 422.909 311.839 Q 422.555 311.711 422.243 311.343 L 420.487 309.077 L 420.289 309.077 Q 418.986 310.975 416.791 311.824 Q 414.597 312.674 411.736 312.674 Z M 414.852 306.104 Q 417.457 306.104 418.788 304.773 Q 420.119 303.442 420.487 302.026 L 420.487 298.882 Q 416.551 298.882 414.582 299.491 Q 412.614 300.1 411.963 301.077 Q 411.311 302.054 411.311 303.187 Q 411.311 304.829 412.331 305.466 Q 413.351 306.104 414.852 306.104 Z"></path>
+                </svg>
+            </div>
+        </div>
+        
         <div class="content">
-            <h1>DerivaIntegra</h1>
-            <div id="progress-bar-container"><div class="progress-bar-inner"></div></div>
-            <p id="loading-text">Carregando as bibliotecas...</p>
+            <div class="loader-container">
+                <div class="loader loader-delayed"></div>
+            </div>
         </div>
     </div>
 
-    <!-- NOVO Cabeçalho Fixo (Adaptado do Layout.js) -->
+    <!-- Cabeçalho Fixo -->
     <header class="fixed top-0 left-0 right-0 z-40 backdrop-blur-lg border-b bg-white/90 dark:bg-gray-800/90 border-gray-200 dark:border-gray-700">
         <div class="relative flex justify-between items-center p-4 h-16">
             <!-- Botão de Câmera -->
@@ -160,75 +437,73 @@
                 </svg>
             </button>
             
-            <!-- Título do App (Centralizado) -->
+            <!-- Título do App -->
             <div class="flex items-center gap-2 absolute left-1/2 -translate-x-1/2">
-                <div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold text-white bg-gradient-to-r from-blue-600 to-green-500">
-                  D∫
-                </div>
                 <h1 class="font-bold text-lg text-gray-800 dark:text-white">
-                  DerivaIntegra
+                  deriva∫ntegra
                 </h1>
             </div>
-
-            <!-- Botão de Menu (REMOVIDO) -->
         </div>
     </header>
 
-    <!-- Container Principal do App (Classes de layout removidas, pt-16 adicionado) -->
+    <!-- Container Principal do App -->
     <div id="app-container" class="pt-16" style="display: none;">
         
-        <!-- View da Calculadora (Classes de padding adicionadas p-4) -->
-        <div id="calculator-view" class="space-y-6 p-4">
+        <!-- View da Calculadora -->
+        <div id="calculator-view" class="space-y-1.5 p-4">
 
-            <!-- Container do Cabeçalho ANTIGO REMOVIDO -->
-            
-            <!-- NOVO Display de Função -->
-            <div id="function-display-area" class="bg-gray-50 dark:bg-gray-700/50 border-l-4 border-blue-500 dark:border-blue-400 p-4 rounded-lg min-h-[70px] flex items-center justify-center overflow-x-auto cursor-text">
+            <!-- Display de Função -->
+            <div id="function-display-area" class="bg-gray-50 dark:bg-gray-700/50 border-l-4 border-blue-500 dark:border-blue-400 p-3 rounded-lg min-h-[70px] flex items-center justify-center overflow-x-auto cursor-text">
                 <span id="function-display-text" class="text-gray-600 dark:text-gray-400 text-lg"></span>
             </div>
             
-            <!-- BLOCO DE RESULTADO MOVIDO PARA CÁ -->
-            <div id="resultArea" class="mt-4"> <!-- Estilos de borda e padding removidos -->
-                <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Resultado:</h2>
-                <div id="resultOutput" class="mt-2 text-center bg-gray-50 dark:bg-gray-700 p-4 rounded-lg min-h-[90px] flex items-center justify-center text-lg">
+            <!-- Bloco de Resultado -->
+            <div id="resultArea">
+                <h2 class="text-base font-semibold text-gray-800 dark:text-gray-200">Resultado:</h2>
+                <div id="resultOutput" class="mt-1.5 text-center bg-gray-50 dark:bg-gray-700 p-3 rounded-lg min-h-[70px] flex items-center justify-center text-lg">
                      <p class="text-gray-500 dark:text-gray-400">O resultado aparecerá aqui.</p>
                 </div>
+                <button id="show-steps-btn" class="hidden w-full text-sm text-blue-600 dark:text-blue-400 font-medium py-2 px-4 mt-2 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/50">
+                    Ver explicação passo a passo
+                </button>
             </div>
-            <!-- FIM DO BLOCO MOVIDO -->
 
-            <div class="space-y-4">
-                <!-- MOVIDO PARA CIMA E ESCONDIDO -->
+            <div class="space-y-1.5">
                 <div id="equation-editor-wrapper">
-                    <!-- Label removido -->
                     <span id="equation-editor"></span>
                 </div>
 
-                <!-- BLOCO DA OPERAÇÃO (AGORA EM SEGUNDO) -->
+                <!-- Seletor de Operação (Corrigido para Layout Horizontal) -->
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Selecione a Operação:</label>
-                    <div class="flex gap-4">
-                        <label for="derivada" class="flex items-center p-3 border border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer flex-1 has-[:checked]:bg-blue-50 has-[:checked]:dark:bg-blue-900/50 has-[:checked]:border-blue-500">
+                    <div class="flex gap-2">
+                        <label for="derivada" class="flex items-center p-2 border border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer flex-1 has-[:checked]:bg-blue-50 has-[:checked]:dark:bg-blue-900/50 has-[:checked]:border-blue-500">
                             <input type="radio" id="derivada" name="operation" value="derivative" class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500" checked>
-                            <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-100">Derivada</span>
+                            <!-- CORREÇÃO: Classes @apply movidas para cá para layout horizontal -->
+                            <span class="ml-2 radio-symbol-wrapper flex items-center justify-center gap-1.5 text-sm font-medium">
+                                <span id="operation-selector-label" class="radio-symbol-box">
+                                    <!-- O KaTeX será renderizado aqui pelo JS -->
+                                </span>
+                                <span>Derivada</span>
+                            </span>
                         </label>
-                        <label for="integral" class="flex items-center p-3 border border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer flex-1 has-[:checked]:bg-blue-50 has-[:checked]:dark:bg-blue-900/50 has-[:checked]:border-blue-500">
+                        <label for="integral" class="flex items-center p-2 border border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer flex-1 has-[:checked]:bg-blue-50 has-[:checked]:dark:bg-blue-900/50 has-[:checked]:border-blue-500">
                             <input type="radio" id="integral" name="operation" value="integral" class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500">
-                            <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-100">Integral</span>
+                            <!-- CORREÇÃO: Classes @apply movidas para cá para layout horizontal -->
+                            <span class="ml-2 radio-symbol-wrapper flex items-center justify-center gap-1.5 text-sm font-medium">
+                                <span id="operation-selector-label-integral" class="radio-symbol-box integral">
+                                    \( \int \)
+                                </span>
+                                <span>Integral</span>
+                            </span>
                         </label>
                     </div>
                 </div>
-                <div id="integralLimits" class="hidden space-y-4 pt-4">
-                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Limites de Integração (opcional):</label>
-                     <div class="flex items-center gap-4">
-                        <input type="text" id="limitA" placeholder="Limite a" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                        <input type="text" id="limitB" placeholder="Limite b" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                     </div>
-                </div>
-                <!-- O EDITOR DE FUNÇÃO ESTAVA AQUI (AGORA ESTÁ ACIMA) -->
                 
-                <div class="pt-4 space-y-2 dark:bg-gray-100 dark:p-4 dark:rounded-lg">
-                    <div id="mathKeyboard" class="grid grid-cols-5 gap-2">
-                        <button class="keyboard-btn bg-green-200" data-cmd="sin">sin</button><button class="keyboard-btn bg-green-200" data-cmd="cos">cos</button><button class="keyboard-btn bg-green-200" data-cmd="tan">tan</button><button class="keyboard-btn bg-gray-300" data-cmd="^">n²</button><button class="keyboard-btn bg-gray-300 variable-x" data-write="x">x</button>
+                <!-- Teclado Matemático -->
+                <div class="pt-1.5 space-y-1.5 dark:bg-gray-100 dark:p-3 dark:rounded-lg">
+                    <div id="mathKeyboard" class="grid grid-cols-5 gap-1.5">
+                        <button class="keyboard-btn bg-green-200" data-cmd="sin">sin</button><button class="keyboard-btn bg-green-200" data-cmd="cos">cos</button><button class="keyboard-btn bg-green-200" data-cmd="tan">tan</button><button class="keyboard-btn bg-gray-300 italic" data-cmd="^">(²)</button><button class="keyboard-btn bg-gray-300 italic variable-x" data-write="x">𝑥</button>
                         <button class="keyboard-btn bg-white" data-write="7">7</button><button class="keyboard-btn bg-white" data-write="8">8</button><button class="keyboard-btn bg-white" data-write="9">9</button><button class="keyboard-btn bg-gray-300" data-write="(">(</button><button class="keyboard-btn bg-gray-300" data-write=")">)</button>
                         <button class="keyboard-btn bg-white" data-write="4">4</button><button class="keyboard-btn bg-white" data-write="5">5</button><button class="keyboard-btn bg-white" data-write="6">6</button><button class="keyboard-btn bg-gray-300" data-write="+">+</button><button class="keyboard-btn bg-gray-300" data-write="-">-</button>
                         <button class="keyboard-btn bg-white" data-write="1">1</button><button class="keyboard-btn bg-white" data-write="2">2</button><button class="keyboard-btn bg-white" data-write="3">3</button><button class="keyboard-btn bg-gray-300" data-write="\cdot ">×</button><button class="keyboard-btn bg-gray-300 text-2xl" data-cmd="/">/</button>
@@ -236,17 +511,14 @@
                         <button class="keyboard-btn" data-cmd="ln">ln</button><button class="keyboard-btn" data-cmd="|">|x|</button><button class="keyboard-btn bg-white" data-cmd="\sqrt">√</button><button class="keyboard-btn bg-red-200" data-action="keystroke" data-value="Backspace">Apagar</button><button class="keyboard-btn bg-red-200" data-action="clear">Limpar</button>
                     </div>
                 </div>
-                <button id="calculateBtn" class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg btn-hover transition-colors duration-300 mt-4">Calcular</button>
+                <button id="calculateBtn" class="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-lg btn-hover transition-colors duration-300 mt-1">Calcular</button>
             </div>
             
-            <!-- Bloco de Resultado removido daqui -->
-
         </div>
 
-        <!-- View do Tutor RENOMEADA E REFEITA para View de Histórico -->
-        <div id="history-view" class="hidden min-h-screen p-4 pt-4"> <!-- Padding-top removido para se alinhar ao pt-16 do container -->
+        <!-- View de Histórico -->
+        <div id="history-view" class="hidden min-h-screen p-4 pt-4">
             
-            <!-- Barra de Busca (inspirado em historico.js) -->
             <div class="relative mb-4">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -256,30 +528,25 @@
                 <input type="search" id="history-search-input" placeholder="Buscar função..." class="w-full h-12 pl-10 pr-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
             </div>
 
-            <!-- Botões de Filtro (inspirado em historico.js) -->
+            <!-- Botões de Filtro (Corrigidos para persistência) -->
             <div class="flex gap-2 mb-4">
                 <button id="filter-all" class="filter-btn active">Todos</button>
-                <button id="filter-derivative" class="filter-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                    </svg>
-                    Derivadas
+                <button id="filter-derivative" class="filter-btn flex items-center justify-center gap-1.5">
+                    <span id="history-filter-derivative-label" class="filter-symbol">
+                        <!-- O KaTeX será renderizado aqui pelo JS -->
+                    </span>
+                    <span>Derivadas</span>
                 </button>
-                <button id="filter-integral" class="filter-btn">
-                     <svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-                      <path d="M12 4v1m0 14v1m-6.9-8.9l.7.7m12.5 0l.7-.7M5.6 18.4l.7-.7m12.5 0l.7.7" />
-                    </svg>
-                    Integrais
+                <button id="filter-integral" class="filter-btn flex items-center justify-center gap-1.5">
+                     <span class="filter-symbol">\( \int \)</span>
+                     <span>Integrais</span>
                 </button>
             </div>
 
-            <!-- Container da Lista de Histórico -->
             <div id="history-list-container" class="space-y-3">
                 <!-- Conteúdo será gerado por JS -->
             </div>
 
-            <!-- Placeholder de Histórico Vazio -->
             <div id="history-empty-placeholder" class="hidden text-center p-8">
                 <div class="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center bg-blue-50 dark:bg-blue-900/50">
                     <svg class="w-8 h-8 text-blue-600 dark:text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -292,10 +559,10 @@
 
         </div>
 
-        <!-- NOVO: View de Opções -->
+        <!-- View de Opções -->
         <div id="options-view" class="hidden min-h-screen p-4 pt-4 space-y-4">
             
-            <!-- Cartão de Tema (Adaptado de configurações.js) -->
+            <!-- Cartão de Tema -->
             <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
                 <div class="flex items-center gap-2 mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -303,7 +570,6 @@
                     </svg>
                     <h3 class="font-semibold text-lg text-gray-800 dark:text-white">Tema</h3>
                 </div>
-                <!-- Toggle de Modo Escuro Movido para cá -->
                 <div class="flex items-center justify-between">
                     <span class="text-gray-700 dark:text-gray-300">Modo Escuro</span>
                     <button id="dark-mode-toggle" class="relative inline-flex items-center h-6 rounded-full w-11 transition-colors bg-gray-200 dark:bg-gray-600">
@@ -312,23 +578,55 @@
                 </div>
             </div>
 
-            <!-- Cartão Sobre o App (Adaptado de configurações.js) -->
+            <!-- Cartão de Notação de Derivada (Corrigido para Rádios) -->
             <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
-                <div class="flex items-center gap-2 mb-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <div class="flex items-center gap-2 mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 011-1h1a2 2 0 100-4H7a1 1 0 01-1-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
                     </svg>
-                    <h3 class="font-semibold text-lg text-gray-800 dark:text-white">Sobre o App</h3>
+                    <h3 class="font-semibold text-lg text-gray-800 dark:text-white">Notação de Derivada</h3>
                 </div>
-                <p class="text-sm mb-3 text-gray-600 dark:text-gray-400">
-                  DerivaIntegra é uma calculadora avançada para estudantes de ensino superior, 
-                  com explicações passo a passo de derivadas e integrais.
-                </p>
+                <!-- Convertido de <select> para <input type="radio"> -->
+                <div id="derivative-notation-select" class="space-y-2 text-gray-900 dark:text-gray-100">
+                    <label class="notation-radio-label">
+                        <input type="radio" name="notation" value="leibniz" class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                        <span class="flex-1">Leibniz</span>
+                        <span class="notation-symbol">\( \frac{d}{dx} \)</span>
+                    </label>
+                    <label class="notation-radio-label">
+                        <input type="radio" name="notation" value="lagrange" class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                        <span class="flex-1">Lagrange</span>
+                        <span class="notation-symbol">\( f'(x) \)</span>
+                    </label>
+                    <label class="notation-radio-label">
+                        <input type="radio" name="notation" value="newton" class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                        <span class="flex-1">Newton</span>
+                        <span class="notation-symbol">\( \dot{y} \)</span>
+                    </label>
+                    <label class="notation-radio-label">
+                        <input type="radio" name="notation" value="euler" class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                        <span class="flex-1">Euler</span>
+                        <span class="notation-symbol">\( D_x f \)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Cartão Notas de atualização -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+                <div class="flex items-center gap-2 mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    </svg>
+                    <h3 class="font-semibold text-lg text-gray-800 dark:text-white">Notas de atualização</h3>
+                </div>
+                <p class="text-xs font-medium text-gray-500 dark:text-gray-400 mb-3">Versão 1.18112025 (18/11/2025)</p>
+                
                 <div class="p-3 rounded-lg space-y-2 bg-gray-50 dark:bg-gray-700/50">
-                  <p class="text-xs font-semibold text-gray-700 dark:text-gray-200">✓ Derivadas com regras</p>
-                  <p class="text-xs font-semibold text-gray-700 dark:text-gray-200">✓ Integrais definidas e indefinidas</p>
-                  <p class="text-xs font-semibold text-gray-700 dark:text-gray-200">✓ Scanner de funções</p>
-                  <p class="text-xs font-semibold text-gray-700 dark:text-gray-200">✓ Histórico completo</p>
+                  <p class="text-xs font-semibold text-gray-700 dark:text-gray-200">✓ (NOVO) Suporte a Integração por Partes (LIATE).</p>
+                  <p class="text-xs font-semibold text-gray-700 dark:text-gray-200">✓ (NOVO) Explicação passo a passo nativa (sem IA).</p>
+                  <p class="text-xs font-semibold text-gray-700 dark:text-gray-200">✓ (NOVO) Notações de derivada (Leibniz, Lagrange, etc.)</p>
+                  <p class="text-xs font-semibold text-gray-700 dark:text-gray-200">✓ Persistência da notação em todo o app.</p>
+                  <p class="text-xs font-semibold text-gray-700 dark:text-gray-200">✓ Correções de acessibilidade no Modo Escuro.</p>
                 </div>
             </div>
 
@@ -336,35 +634,32 @@
         
     </div>
     
-    <!-- NOVO: Barra de Navegação Inferior (Adaptado do Layout.js) -->
-    <nav class="fixed bottom-0 left-0 right-0 z-50 backdrop-blur-lg border-t bg-white/95 dark:bg-gray-800/95 border-gray-200 dark:border-gray-700">
+    <!-- Barra de Navegação Inferior (Corrigida) -->
+    <nav id="bottom-nav" class="fixed bottom-0 left-0 right-0 z-50 backdrop-blur-lg border-t bg-white/95 dark:bg-gray-800/95 border-gray-200 dark:border-gray-700 hidden">
       <div class="flex items-center justify-around px-2 py-2">
-          <!-- Botão Calculadora -->
-            <button id="nav-btn-calc" class="nav-btn active">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-10" fill="none" viewBox="-5 0 24 24" stroke="currentColor" stroke-width="2">
+            <!-- CORREÇÃO: Classes de cor movidas para o JS (updateNavActiveState) -->
+            <button id="nav-btn-calc" class="nav-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 14h.01M9 10h.01M12 10h.01M15 10h.01M6 21h12a2 2 0 002-2V5a2 2 0 00-2-2H6a2 2 0 00-2 2v14a2 2 0 002 2z" />
                 </svg>
-                <span class="text-xs font-medium w-full">Calculadora</span> <!-- ADICIONADO w-full -->
+                <span class="text-xs font-medium w-full">Calculadora</span>
             </button>
-            <!-- Botão Tutor (AGORA HISTÓRICO) -->
             <button id="nav-btn-history" class="nav-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-10" fill="none" viewBox="-5 0 24 24" stroke="currentColor" stroke-width="2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.523 5.754 18 7.5 18s3.332.523 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.523 18.246 18 16.5 18c-1.746 0-3.332.523-4.5 1.253" />
                 </svg>
-                <span class="text-xs font-medium w-full">Histórico</span> <!-- ADICIONADO w-full -->
+                <span class="text-xs font-medium w-full">Histórico</span>
             </button>
-            <!-- Botão Menu (AGORA OPÇÕES) -->
             <button id="nav-btn-options" class="nav-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-10" fill="none" viewBox="-5 0 24 24" stroke="currentColor" stroke-width="2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                   <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                <span class="text-xs font-medium w-full">Opções</span> <!-- ADICIONADO w-full -->
+                <span class="text-xs font-medium w-full">Opções</span>
             </button>
         </div>
     </nav>
 
-    <!-- Menu Lateral (REMOVIDO) -->
     
     <!-- Modal de Scan -->
     <div id="scan-modal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
@@ -409,8 +704,64 @@
             </div>
         </div>
     </div>
+    
+    <!-- Modal de Limites de Integração -->
+    <div id="limit-modal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
+        <div id="limit-modal-content" class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 w-full max-w-md space-y-4">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-bold text-gray-800 dark:text-white">Limites de Integração</h2>
+                <button id="close-limit-modal-btn" class="text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="space-y-3">
+                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Definir limites (opcional):</label>
+                 <div class="flex items-center gap-4">
+                    <input type="text" id="modalLimitA" placeholder="Limite a" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    <input type="text" id="modalLimitB" placeholder="Limite b" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                 </div>
+            </div>
+            
+            <div class="flex flex-col gap-3 pt-2">
+                <button id="set-limits-btn" class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg btn-hover transition-colors duration-300">
+                    Definir Limites
+                </button>
+                <button id="set-indefinite-btn" class="w-full bg-gray-200 text-gray-800 dark:bg-gray-600 dark:text-gray-200 font-bold py-3 px-4 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors duration-300">
+                    Integral Indefinida
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Passo a Passo -->
+    <div id="steps-modal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
+        <div id="steps-modal-content" class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 w-full max-w-md space-y-4">
+            <div class="flex justify-between items-center pb-2 border-b border-gray-200 dark:border-gray-700">
+                <h2 class="text-xl font-bold text-gray-800 dark:text-white">Explicação Passo a Passo</h2>
+                <button id="close-steps-modal-btn" class="text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div id="steps-timeline-container" class="space-y-4 overflow-y-auto" style="max-height: 60vh;">
+                <!-- O conteúdo da timeline será gerado por JS (pela IA ou pela biblioteca derivainteg) -->
+            </div>
+        </div>
+    </div>
 
-    <script>
+
+    <script type="module">
+        // ===================================================================
+        //   ATUALIZAÇÃO: Carregamos 'derivar' e 'integrar' da sua biblioteca
+        //   CORREÇÃO: Adicionado '?v=2' para forçar a limpeza da cache do CDN
+        // ===================================================================
+        import { 
+            derivar as derivarAlgoritmico,
+            integrar as integrarAlgoritmico 
+        } from 'https://cdn.jsdelivr.net/npm/derivaintegra@latest/derivaintegra.js?v=2'; 
+
+
         document.addEventListener('DOMContentLoaded', () => {
             window.addEventListener('load', startApp);
         });
@@ -420,35 +771,25 @@
             const appContainer = document.getElementById('app-container');
             const loadingScreen = document.getElementById('loading-screen');
             const calculatorView = document.getElementById('calculator-view');
-            const historyView = document.getElementById('history-view'); // RENOMEADO
-            const optionsView = document.getElementById('options-view'); // NOVO
+            const historyView = document.getElementById('history-view');
+            const optionsView = document.getElementById('options-view');
+            const bottomNav = document.getElementById('bottom-nav');
             
-            // Elementos do Menu Lateral (REMOVIDOS)
-            // const menuBtn = document.getElementById('menu-btn'); // REMOVIDO
-            // const closeMenuBtn = document.getElementById('close-menu-btn'); // REMOVIDO
-            // const sideMenu = document.getElementById('side-menu'); // REMOVIDO
-            // const menuOverlay = document.getElementById('menu-overlay'); // REMOVIDO
-            
-            const darkModeToggle = document.getElementById('dark-mode-toggle'); // ID mantido
-            const darkModeIndicator = document.getElementById('dark-mode-indicator'); // ID mantido
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+            const darkModeIndicator = document.getElementById('dark-mode-indicator');
             
             const calculateBtn = document.getElementById('calculateBtn');
             const resultOutput = document.getElementById('resultOutput');
-            const integralLimits = document.getElementById('integralLimits');
-            const limitAInput = document.getElementById('limitA');
-            const limitBInput = document.getElementById('limitB');
             const editorSpan = document.getElementById('equation-editor');
             const mathKeyboard = document.getElementById('mathKeyboard');
-            
-            // Elementos do Tutor REMOVIDOS
             
             // Scan Modal Elements
             const scanModal = document.getElementById('scan-modal');
             const closeScanModalBtn = document.getElementById('close-scan-modal-btn');
             const ocrStatus = document.getElementById('ocr-status');
             const recognizeBtn = document.getElementById('recognize-btn');
-            const scanBtnHeader = document.getElementById('scan-btn-header'); // NOVO
-            const functionDisplayText = document.getElementById('function-display-text'); // NOVO
+            const scanBtnHeader = document.getElementById('scan-btn-header');
+            const functionDisplayText = document.getElementById('function-display-text');
             let selectedImageFile = null;
             let cameraStream = null;
             const uploadTabBtn = document.getElementById('upload-tab-btn');
@@ -464,13 +805,13 @@
             const cameraPlaceholder = document.getElementById('camera-placeholder');
             const captureBtn = document.getElementById('capture-btn');
 
-            // --- NOVO: Botões de Navegação Inferior ---
+            // Navegação Inferior
             const navBtnCalc = document.getElementById('nav-btn-calc');
-            const navBtnHistory = document.getElementById('nav-btn-history'); // RENOMEADO
-            const navBtnOptions = document.getElementById('nav-btn-options'); // RENOMEADO
-            const navButtons = [navBtnCalc, navBtnHistory, navBtnOptions]; // ATUALIZADO
+            const navBtnHistory = document.getElementById('nav-btn-history');
+            const navBtnOptions = document.getElementById('nav-btn-options');
+            const navButtons = [navBtnCalc, navBtnHistory, navBtnOptions];
             
-            // --- NOVO: Elementos da View de Histórico ---
+            // Elementos da View de Histórico
             const historySearchInput = document.getElementById('history-search-input');
             const historyListContainer = document.getElementById('history-list-container');
             const historyEmptyPlaceholder = document.getElementById('history-empty-placeholder');
@@ -479,25 +820,65 @@
             const filterIntegralBtn = document.getElementById('filter-integral');
             const filterButtons = [filterAllBtn, filterDerivativeBtn, filterIntegralBtn];
             
+            // Elementos do Modal de Limites
+            const limitModal = document.getElementById('limit-modal');
+            const closeLimitModalBtn = document.getElementById('close-limit-modal-btn');
+            const setLimitsBtn = document.getElementById('set-limits-btn');
+            const setIndefiniteBtn = document.getElementById('set-indefinite-btn');
+            const modalLimitA = document.getElementById('modalLimitA');
+            const modalLimitB = document.getElementById('modalLimitB');
+            const radioDerivada = document.getElementById('derivada');
+            const radioIntegral = document.getElementById('integral');
+            
+            // Elementos do Modal Passo a Passo
+            const showStepsBtn = document.getElementById('show-steps-btn');
+            const stepsModal = document.getElementById('steps-modal');
+            const closeStepsModalBtn = document.getElementById('close-steps-modal-btn');
+            const stepsTimelineContainer = document.getElementById('steps-timeline-container');
+
+            // Elementos de Notação (Persistência)
+            const notationSelectRadios = document.querySelectorAll('input[name="notation"]');
+            const operationSelectorLabel = document.getElementById('operation-selector-label');
+            const historyFilterDerivativeLabel = document.getElementById('history-filter-derivative-label');
+            
+            // Mapeamento de Notações (Persistência)
+            const notationMap = {
+                leibniz: { display: (f) => `\\frac{d}{dx}\\left(${f}\\right)`, selector: `\\frac{d}{dx}` },
+                lagrange: { display: (f) => `f'(x) = ${f}`, selector: `f'(x)` },
+                newton: { display: (f) => `\\dot{y} \\text{ para } y = ${f}`, selector: `\\dot{y}` },
+                euler: { display: (f) => `D_x \\left(${f}\\right)`, selector: `D_x f` }
+            };
+
             // --- State ---
-            // calculationHistory removido (agora é localStorage)
-            let currentHistoryFilter = 'all'; // NOVO
+            let currentHistoryFilter = 'all';
+            let integralLimitsState = { a: null, b: null };
+            let currentCalculationStepsQuery = { latex: '', type: '' }; // Armazena a query para o Gemini
             
             // --- Initialize MathQuill Editor ---
             const MQ = MathQuill.getInterface(2);
             const mathField = MQ.MathField(editorSpan, {
                 spaceBehavesLikeTab: true,
                 handlers: {
-                    edit: () => updateFunctionDisplay() // NOVO: Atualiza o display ao digitar
+                    edit: () => updateFunctionDisplay()
                 }
             });
-            mathField.latex('sin(x)');
+            mathField.latex('sin(x^2)');
+
+            try {
+                const mathQuillTextarea = editorSpan.querySelector('.mq-textarea textarea');
+                if (mathQuillTextarea) {
+                    mathQuillTextarea.setAttribute('readonly', 'true');
+                    mathQuillTextarea.setAttribute('inputmode', 'none');
+                } else {
+                    console.warn("Não foi possível encontrar o textarea do MathQuill para o tornar readonly.");
+                }
+            } catch (e) {
+                console.error("Erro ao tentar tornar o textarea do MathQuill readonly:", e);
+            }
 
             // --- Helper Functions ---
             const cleanLatex = (latexStr) => latexStr.replace(/\\cdot/g, ' ');
             
-            // updateHistory REMOVIDO
-
             // --- Keyboard Actions ---
             mathKeyboard.addEventListener('click', (e) => {
                 const target = e.target.closest('button');
@@ -508,11 +889,8 @@
                 const value = target.dataset.value;
                 mathField.focus();
                 if (write) {
-                    // CORREÇÃO: Sair automaticamente do bloco ao digitar operadores
                     if (['+', '-', '\cdot '].includes(write)) {
-                        // 1. Envia "seta para a direita" para sair do expoente/fração
                         mathField.keystroke('Right');
-                        // 2. Escreve o operador
                         mathField.write(write);
                     } else {
                         mathField.write(write);
@@ -523,22 +901,45 @@
                 else if (action === 'clear') mathField.latex('');
             });
             
-            // Função para converter LaTeX para texto que o Nerdamer entende
             const latexToNerdamer = (latex) => {
-                return latex
-                    .replace(/\\sin/g, 'sin')
-                    .replace(/\\cos/g, 'cos')
-                    .replace(/\\tan/g, 'tan')
-                    .replace(/\\ln/g, 'log')
-                    .replace(/\\left\(/g, '(')
-                    .replace(/\\right\)/g, ')')
-                    .replace(/\\cdot/g, '*') // CORRIGIDO: Agora usa \cdot
-                    .replace(/\\frac{([^}]+)}{([^}]+)}/g, '($1)/($2)')
-                    .replace(/{/g, '')
-                    .replace(/}/g, '');
+                // Esta função converte o LaTeX do MathQuill para o formato
+                // que AMBAS as bibliotecas (Nerdamer e derivainteg) entendem.
+                let text = latex;
+
+                // 1. Substituições básicas de comandos LaTeX
+                text = text.replace(/\\sin/g, 'sin');
+                text = text.replace(/\\cos/g, 'cos');
+                text = text.replace(/\\tan/g, 'tan');
+                text = text.replace(/\\ln/g, 'ln');
+                text = text.replace(/\\exp/g, 'exp');
+                text = text.replace(/\\sqrt/g, 'sqrt');
+                
+                // 2. Remover parênteses de dimensionamento automático
+                text = text.replace(/\\left\(/g, '(');
+                text = text.replace(/\\right\)/g, ')');
+                
+                // 3. Operador de multiplicação
+                text = text.replace(/\\cdot/g, '*');
+
+                // 4. Frações: \frac{a}{b} -> (a)/(b)
+                // Nota: Esta regex lida com casos simples. Casos muito aninhados podem precisar de parser melhor,
+                // mas para o escopo deste app, geralmente funciona.
+                // Precisamos rodar em loop para lidar com frações aninhadas se houver
+                while (text.match(/\\frac{([^}]+)}{([^}]+)}/)) {
+                    text = text.replace(/\\frac{([^}]+)}{([^}]+)}/g, '($1)/($2)');
+                }
+                
+                // 5. Limpeza final de chaves restantes que podem ter sobrado de comandos mal formatados
+                // MAS cuidado com argumentos de funções se eles dependiam de chaves
+                text = text.replace(/{/g, '(').replace(/}/g, ')');
+
+                // 6. Ajuste fino para potências e argumentos simples que ficaram (x)
+                // Ex: x^(2) -> x^2 (opcional, mas ajuda na leitura)
+                
+                return text;
             };
 
-            // --- NOVO: Lógica da View de Histórico ---
+            // --- Lógica da View de Histórico ---
             function getHistoryIcon(type) {
                 if (type === 'derivative') {
                     return `<svg xmlns="http://www.w3.org/2000/svg" class="inline h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>`;
@@ -555,15 +956,24 @@
                 });
             }
 
+            // Simulação de confirmação (para evitar o 'confirm' bloqueado)
+            function showCustomConfirm(message, callback) {
+                console.warn("Confirmação simulada:", message);
+                // Num app real, isto abriria um modal.
+                // Aqui, assumimos "OK" automaticamente para a deleção.
+                callback(true); 
+            }
+
             function handleDeleteCalculation(id) {
-                // MUDANÇA: Substituído confirm() por uma verificação simples, 
-                // já que confirm() é bloqueado em alguns ambientes.
-                // Para uma UI melhor, seria necessário um modal de confirmação customizado.
-                console.log("Tentando excluir item:", id);
-                let history = JSON.parse(localStorage.getItem('calculationHistory') || '[]');
-                history = history.filter(item => item.id !== id);
-                localStorage.setItem('calculationHistory', JSON.stringify(history));
-                renderHistoryList(); // Re-renderiza a lista
+                showCustomConfirm("Deseja realmente excluir este cálculo?", (confirmed) => {
+                    if (confirmed) {
+                        console.log("Tentando excluir item:", id);
+                        let history = JSON.parse(localStorage.getItem('calculationHistory') || '[]');
+                        history = history.filter(item => item.id !== id);
+                        localStorage.setItem('calculationHistory', JSON.stringify(history));
+                        renderHistoryList();
+                    }
+                });
             }
 
             function renderHistoryList() {
@@ -571,13 +981,11 @@
                 const history = JSON.parse(localStorage.getItem('calculationHistory') || '[]');
 
                 const filteredHistory = history.filter(item => {
-                    // Filtro de Tipo
                     const typeMatch = currentHistoryFilter === 'all' || item.calculation_type === currentHistoryFilter;
-                    // Filtro de Busca
                     const searchMatch = (item.original_function_latex || '').toLowerCase().includes(searchTerm) || 
                                       (item.result_latex || '').toLowerCase().includes(searchTerm);
                     return typeMatch && searchMatch;
-                }).sort((a, b) => b.id - a.id); // Garante que os mais novos fiquem em cima
+                }).sort((a, b) => b.id - a.id);
 
                 if (filteredHistory.length === 0) {
                     historyListContainer.innerHTML = '';
@@ -591,7 +999,6 @@
                                     ${getHistoryIcon(item.calculation_type)}
                                 </div>
                                 <div class="history-card-fn">
-                                    <!-- KaTeX renderizará aqui -->
                                     <div class="latex-input-render">${item.original_function_latex}</div>
                                 </div>
                                 <button class="delete-history-btn text-gray-400 hover:text-red-500" data-id="${item.id}">
@@ -611,10 +1018,12 @@
                             <div class="history-card-result">
                                 <img src="${item.result_image_url}" alt="Resultado do cálculo" />
                             </div>
+                            <button class="show-history-steps-btn w-full text-sm text-blue-600 dark:text-blue-400 font-medium py-2 px-4 mt-2 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/50" data-latex="${item.original_function_latex}" data-type="${item.calculation_type}">
+                                Ver explicação passo a passo
+                            </button>
                         </div>
                     `).join('');
 
-                    // Renderiza KaTeX em todos os inputs
                     historyListContainer.querySelectorAll('.latex-input-render').forEach(el => {
                         katex.render(el.textContent, el, {
                             throwOnError: false,
@@ -622,13 +1031,19 @@
                         });
                     });
 
-                    // Adiciona listeners aos botões de delete
                     historyListContainer.querySelectorAll('.delete-history-btn').forEach(btn => {
                         btn.addEventListener('click', () => {
-                            // Pede confirmação antes de deletar
-                            if (confirm("Deseja realmente excluir este cálculo?")) {
-                                handleDeleteCalculation(parseInt(btn.dataset.id));
-                            }
+                            handleDeleteCalculation(parseInt(btn.dataset.id));
+                        });
+                    });
+                    
+                    historyListContainer.querySelectorAll('.show-history-steps-btn').forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            const query = {
+                                latex: btn.dataset.latex,
+                                type: btn.dataset.type
+                            };
+                            openStepsModal(query); // Passa a query
                         });
                     });
                 }
@@ -639,18 +1054,65 @@
                 activeBtn.classList.add('active');
             }
 
+            // --- Lógica de Persistência da Notação (Corrigida) ---
+            function updateNotationDisplay(notationValue = 'leibniz') {
+                const notation = notationMap[notationValue];
+                if (!notation) return;
+                
+                // 1. Atualiza o seletor da calculadora
+                if (operationSelectorLabel) {
+                    katex.render(notation.selector, operationSelectorLabel, {
+                        throwOnError: false,
+                        displayMode: false
+                    });
+                }
+                
+                // 2. Atualiza o filtro do histórico
+                if (historyFilterDerivativeLabel) {
+                    katex.render(notation.selector, historyFilterDerivativeLabel, {
+                        throwOnError: false,
+                        displayMode: false
+                    });
+                }
+                
+                // 3. Atualiza o display principal (se a derivada estiver selecionada)
+                updateFunctionDisplay();
+            }
+
+            function initializeNotation() {
+                const savedNotation = localStorage.getItem('derivativeNotation') || 'leibniz';
+                const radioToSelect = document.querySelector(`input[name="notation"][value="${savedNotation}"]`);
+                if (radioToSelect) {
+                    radioToSelect.checked = true;
+                }
+                updateNotationDisplay(savedNotation);
+            }
+
+            notationSelectRadios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    const newNotation = e.target.value;
+                    localStorage.setItem('derivativeNotation', newNotation);
+                    updateNotationDisplay(newNotation);
+                });
+            });
+            // --- Fim da Lógica de Persistência ---
+
+
             // --- Lógica do Display de Função ---
             function updateFunctionDisplay() {
                 try {
                     const latexInput = mathField.latex() || "f(x)";
                     const operation = document.querySelector('input[name="operation"]:checked').value;
-                    const limitA = limitAInput.value;
-                    const limitB = limitBInput.value;
+                    const limitA = integralLimitsState.a;
+                    const limitB = integralLimitsState.b;
                     
                     let finalLatex = '';
 
                     if (operation === 'derivative') {
-                        finalLatex = `\\frac{d}{dx}\\left(${latexInput}\\right)`;
+                        // Usa a notação persistente
+                        const currentNotationValue = localStorage.getItem('derivativeNotation') || 'leibniz';
+                        const notation = notationMap[currentNotationValue];
+                        finalLatex = notation.display(latexInput);
                     } else { // integral
                         if (limitA && limitB) {
                             finalLatex = `\\int_{${limitA}}^{${limitB}} ${latexInput} \\,dx`;
@@ -659,7 +1121,6 @@
                         }
                     }
                     
-                    // Usar KaTeX (já importado no <head>) para renderizar
                     katex.render(finalLatex, functionDisplayText, {
                         throwOnError: false,
                         displayMode: true
@@ -670,49 +1131,204 @@
                     functionDisplayText.innerText = "Erro na formatação.";
                 }
             }
+            
+            // --- Lógica do Modal de Limites ---
+            function openLimitModal() {
+                modalLimitA.value = integralLimitsState.a || '';
+                modalLimitB.value = integralLimitsState.b || '';
+                limitModal.classList.remove('hidden');
+            }
+            
+            function closeLimitModal() {
+                limitModal.classList.add('hidden');
+            }
+            
+            function revertToDerivative() {
+                radioDerivada.checked = true;
+                radioIntegral.checked = false;
+                integralLimitsState = { a: null, b: null };
+                updateFunctionDisplay();
+            }
 
+            closeLimitModalBtn.addEventListener('click', () => {
+                closeLimitModal();
+                revertToDerivative();
+            });
+            
+            setLimitsBtn.addEventListener('click', () => {
+                integralLimitsState.a = modalLimitA.value || null;
+                integralLimitsState.b = modalLimitB.value || null;
+                closeLimitModal();
+                updateFunctionDisplay();
+            });
+            
+            setIndefiniteBtn.addEventListener('click', () => {
+                integralLimitsState = { a: null, b: null };
+                closeLimitModal();
+                updateFunctionDisplay();
+            });
+            
+            // --- Lógica do Modal Passo a Passo (HÍBRIDA: IA + BIBLIOTECA) ---
+
+            // [FUNÇÕES REMOVIDAS]
+            // As funções 'fetchWithRetry' e 'generateStepsWithGemini' foram removidas
+            // pois a biblioteca 'derivainteg' agora lida com os passos da integral.
+
+            // ===================================================================
+            //   FUNÇÃO MODIFICADA: openStepsModal
+            //   Agora usa a biblioteca 'derivaintegra' tanto para derivadas quanto para integrais.
+            // ===================================================================
+            async function openStepsModal(query) {
+                stepsModal.classList.remove('hidden');
+                stepsTimelineContainer.innerHTML = '<p class="text-gray-500 dark:text-gray-400 text-center">A gerar explicação passo a passo...</p>';
+                
+                // Limpa o container de estilos antigos, caso existam
+                stepsTimelineContainer.className = "space-y-4 overflow-y-auto";
+                
+                // 1. Converte o LaTeX (ex: \sin(x^2)) para texto simples (ex: sin(x^2))
+                // AQUI: Garantimos que a string está limpa para a biblioteca
+                let plainTextFunction = latexToNerdamer(query.latex);
+                
+                // Pequeno ajuste: remover espaços em torno de operadores para garantir parsing correto
+                plainTextFunction = plainTextFunction.replace(/\s+/g, '');
+                
+                // Correção específica para multiplicadores implícitos ou explícitos que falham
+                // Se tivermos "x^2sin(x)", forçamos "x^2*sin(x)"
+                // Esta regex procura: (letra ou numero ou fechar parentese) seguido imediatamente de (sen/cos/log/exp/etc)
+                plainTextFunction = plainTextFunction.replace(/([x0-9\)])(?=(sin|cos|tan|ln|exp|sqrt))/g, '$1*');
+
+
+                // DECISÃO: Derivada usa 'derivarAlgoritmico', Integral usa 'integrarAlgoritmico'
+                try {
+                    let resultadoAlgoritmico;
+
+                    if (query.type === 'derivative') {
+                        // --- USA A BIBLIOTECA (Derivada) ---
+                        // 2. Obtém a notação guardada (leibniz ou lagrange)
+                        const notation = localStorage.getItem('derivativeNotation') || 'leibniz';
+                        resultadoAlgoritmico = derivarAlgoritmico(plainTextFunction, notation);
+
+                    } else {
+                        // --- USA A BIBLIOTECA (Integral) ---
+                        // Passamos a função limpa. A biblioteca deve lidar com 'x^2*sin(x)'
+                        resultadoAlgoritmico = integrarAlgoritmico(plainTextFunction);
+                    }
+                    
+                    // 4. Obtém o HTML gerado pelo StepsBuilder
+                    const stepsHTML = resultadoAlgoritmico.stepsBuilder.render();
+                    
+                    // 5. Injeta o HTML. 
+                    // Adicionamos classes de estilo para o HTML da sua biblioteca
+                    // (Definidas no <style> lá em cima)
+                    stepsTimelineContainer.innerHTML = stepsHTML;
+                    stepsTimelineContainer.querySelectorAll('.step').forEach(el => {
+                        el.classList.add('derivainteg-step');
+                        
+                        // Correção visual para títulos que possam vir sem espaço
+                        const titleEl = el.querySelector('.step-title');
+                        if (titleEl) {
+                            titleEl.classList.add('derivainteg-step-title');
+                            // Força um espaço após "Cálculo:" se necessário, embora o CSS deva tratar
+                        }
+                    });
+
+
+                    // 6. Renderiza o KaTeX dentro do HTML que acabámos de injetar
+                    renderMathInElement(stepsTimelineContainer, {
+                        delimiters: [
+                          {left: '$$', right: '$$', display: true},
+                          {left: '$', right: '$', display: false},
+                        ]
+                    });
+
+                } catch (e) {
+                    console.error("Erro ao chamar a biblioteca derivaintegra:", e);
+                    // Mostra o erro exato na UI para ajudar no debug
+                    stepsTimelineContainer.innerHTML = `
+                        <div class="p-4 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-800">
+                            <h3 class="text-red-600 dark:text-red-400 font-bold mb-2">Erro na Geração dos Passos</h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-2">A biblioteca não conseguiu processar a expressão: <code>${plainTextFunction}</code></p>
+                            <p class="text-sm text-red-500 font-mono bg-white dark:bg-black/20 p-2 rounded">${e.message}</p>
+                        </div>
+                    `;
+                }
+            }
+            
+            function closeStepsModal() {
+                stepsModal.classList.add('hidden');
+            }
+            
+            // [FUNÇÃO REMOVIDA]
+            // A função 'renderStepByStep' foi removida pois
+            // 'openStepsModal' agora renderiza o HTML do 'stepsBuilder' da biblioteca.
+            
+            showStepsBtn.addEventListener('click', () => openStepsModal(currentCalculationStepsQuery));
+            closeStepsModalBtn.addEventListener('click', closeStepsModal);
+
+            
             // --- Lógica da Calculadora ---
-            const toggleIntegralLimits = () => {
-                const selectedOperation = document.querySelector('input[name="operation"]:checked').value;
-                const integralLimits = document.getElementById('integralLimits');
-                integralLimits.classList.toggle('hidden', selectedOperation !== 'integral');
-                updateFunctionDisplay(); // NOVO: Atualiza o display
+            function handleOperationChange(event) {
+                const selectedOperation = event.target.value;
+                showStepsBtn.classList.add('hidden'); 
+                
+                if (selectedOperation === 'integral') {
+                    openLimitModal();
+                }
+                // Atualiza o display (para mostrar/esconder notação)
+                updateFunctionDisplay();
             };
 
             const performCalculation = () => {
+                showStepsBtn.classList.add('hidden');
+                currentCalculationStepsQuery = { latex: '', type: '' };
+                
                 try {
-                    // MUDANÇA CRÍTICA: Usar .latex() e converter
                     const latexInput = mathField.latex();
                     if (!latexInput) {
                         resultOutput.innerHTML = `<p class="text-gray-500">Construa uma função.</p>`;
                         return;
                     }
-                    const nerdamerInput = latexToNerdamer(latexInput);
+                    
+                    // USA A NOSSA FUNÇÃO DE TRADUÇÃO MELHORADA
+                    const nerdamerInput = latexToNerdamer(latexInput); 
                     
                     const expressionTex = cleanLatex(nerdamer(nerdamerInput).toTeX());
                     let finalLatex = '';
                     let calculationType = document.querySelector('input[name="operation"]:checked').value;
+                    let queryType = calculationType; // Para o Gemini / nossa biblioteca
 
                     if (calculationType === 'derivative') {
                         const derivativeTex = cleanLatex(nerdamer.diff(nerdamerInput, 'x').toTeX());
                         finalLatex = `\\frac{d}{dx}\\left(${expressionTex}\\right) = ${derivativeTex}`;
                     } else {
-                        const limitA = limitAInput.value, limitB = limitBInput.value;
+                        const limitA = integralLimitsState.a;
+                        const limitB = integralLimitsState.b;
+                        
                         if (limitA && limitB) {
-                            calculationType = 'integral_defined'; // Tipo mais específico
+                            queryType = 'integral_defined';
                             const indefiniteIntegral = nerdamer.integrate(nerdamerInput, 'x');
                             const numA = parseFloat(limitA);
                             const numB = parseFloat(limitB);
+                            
+                            if (isNaN(numA) || isNaN(numB)) {
+                                 resultOutput.innerHTML = `<p class="text-red-500">Limites de integração inválidos.</p>`;
+                                 return;
+                            }
+
                             const upperValStr = nerdamer(indefiniteIntegral.toString(), {x: numB}).evaluate().text('decimal');
                             const lowerValStr = nerdamer(indefiniteIntegral.toString(), {x: numA}).evaluate().text('decimal');
                             const integralVal = (parseFloat(upperValStr) - parseFloat(lowerValStr)).toFixed(4);
                             finalLatex = `\\int_{${limitA}}^{${limitB}} ${expressionTex} \\,dx = ${integralVal}`;
                         } else {
-                            calculationType = 'integral_indefinite'; // Tipo mais específico
+                            queryType = 'integral_indefinite';
                             const integralTex = cleanLatex(nerdamer.integrate(nerdamerInput, 'x').toTeX());
                             finalLatex = `\\int ${expressionTex} \\,dx = ${integralTex} + C`;
                         }
                     }
+                    
+                    // Armazena a query (o LaTeX original) para o Modal de Passos
+                    currentCalculationStepsQuery = { latex: latexInput, type: queryType };
+
                     resultOutput.innerHTML = `<p class="text-gray-500">A gerar imagem...</p>`;
                     const encodedLatex = encodeURIComponent(finalLatex);
                     const imageUrl = `https://latex.codecogs.com/svg.latex?${encodedLatex}`;
@@ -723,8 +1339,8 @@
                     img.onload = () => {
                         resultOutput.innerHTML = '';
                         resultOutput.appendChild(img);
+                        showStepsBtn.classList.remove('hidden');
                         
-                        // --- NOVO: Salva no localStorage ---
                         let history = JSON.parse(localStorage.getItem('calculationHistory') || '[]');
                         const newCalculation = {
                             id: Date.now(),
@@ -732,12 +1348,12 @@
                             original_function_nerdamer: nerdamerInput,
                             result_latex: finalLatex,
                             result_image_url: imageUrl,
-                            calculation_type: document.querySelector('input[name="operation"]:checked').value, // Salva o tipo base
+                            calculation_type: document.querySelector('input[name="operation"]:checked').value,
                             created_date: new Date().toISOString()
+                            // Passos removidos, serão gerados dinamicamente
                         };
-                        history.unshift(newCalculation); // Adiciona no início
+                        history.unshift(newCalculation);
                         localStorage.setItem('calculationHistory', JSON.stringify(history));
-                        // --- Fim do Novo Bloco ---
                     };
                 } catch (error) {
                     console.error("Calculation Error:", error);
@@ -745,20 +1361,39 @@
                 }
             };
             
-            // --- Lógica de Transição de Tela e Menu (Atualizada) ---
+            // --- Lógica de Transição de Tela e Menu (Corrigida) ---
             
-            // NOVO: Função para atualizar estado ativo dos botões
             const updateNavActiveState = (activeBtn) => {
                 navButtons.forEach(btn => {
-                    btn.classList.remove('active');
+                    // Limpa classes de estado (ativo/inativo)
+                    btn.classList.remove('active', 'text-gray-600', 'dark:text-gray-400');
+                    const svg = btn.querySelector('svg');
+                    if (svg) {
+                        svg.classList.remove('text-blue-600', 'dark:text-blue-400', 'text-gray-600', 'dark:text-gray-400');
+                    }
+                    
+                    // Adiciona classes inativas
+                    btn.classList.add('text-gray-600', 'dark:text-gray-400');
+                    if (svg) {
+                        svg.classList.add('text-gray-600', 'dark:text-gray-400');
+                    }
                 });
+
                 if (activeBtn) {
-                    activeBtn.classList.add('active');
+                    // Remove classes inativas e adiciona ativas
+                    activeBtn.classList.remove('text-gray-600', 'dark:text-gray-400');
+                    activeBtn.classList.add('active'); // A classe 'active' já define as cores de texto ativas
+                    
+                    const activeSvg = activeBtn.querySelector('svg');
+                    if (activeSvg) {
+                        activeSvg.classList.remove('text-gray-600', 'dark:text-gray-400');
+                        activeSvg.classList.add('text-blue-600', 'dark:text-blue-400'); // Cores ativas para o SVG
+                    }
                 }
             };
 
             const switchView = (viewToShow) => {
-                const views = [calculatorView, historyView, optionsView]; // ATUALIZADO
+                const views = [calculatorView, historyView, optionsView];
                 const targetView = document.getElementById(`${viewToShow}-view`);
 
                 views.forEach(view => {
@@ -773,43 +1408,41 @@
                     targetView.style.opacity = '1';
                 }, 20);
 
-                // NOVO: Atualiza botões
                 if (viewToShow === 'calculator') {
                     updateNavActiveState(navBtnCalc);
-                } else if (viewToShow === 'history') { // ATUALIZADO
+                } else if (viewToShow === 'history') {
                     updateNavActiveState(navBtnHistory);
-                    renderHistoryList(); // NOVO: Renderiza o histórico ao trocar para a view
-                } else if (viewToShow === 'options') { // NOVO
+                    renderHistoryList();
+                } else if (viewToShow === 'options') {
                     updateNavActiveState(navBtnOptions);
                 }
             };
 
-            // Funções openMenu e closeMenu (REMOVIDAS)
-
-            // Listeners do Menu (REMOVIDOS)
-            // menuBtn.addEventListener('click', openMenu); 
-            // closeMenuBtn.addEventListener('click', closeMenu);
-            // menuOverlay.addEventListener('click', closeMenu);
-
             darkModeToggle.addEventListener('click', () => {
-                document.documentElement.classList.toggle('dark');
-                // NOVO: Sincroniza o indicador no modo escuro
-                if (document.documentElement.classList.contains('dark')) {
+                const isDark = document.documentElement.classList.toggle('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                if (isDark) {
                     darkModeIndicator.classList.add('translate-x-6');
                 } else {
                     darkModeIndicator.classList.remove('translate-x-6');
                 }
             });
 
-            // --- Lógica do Tutor (REMOVIDA) ---
+            // Sincroniza o tema ao carregar
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                darkModeIndicator.classList.add('translate-x-6');
+            } else {
+                document.documentElement.classList.remove('dark');
+                darkModeIndicator.classList.remove('translate-x-6');
+            }
+            
 
-            // NOVO: Função reutilizável para abrir o histórico
             const openHistoryView = () => {
-                switchView('history'); // A função switchView agora chama renderHistoryList
-                // closeMenu() removido
+                switchView('history');
             };
             
-            // --- Lógica do Scanner de Equação (Restaurada) ---
+            // --- Lógica do Scanner de Equação ---
             const stopCamera = () => {
                 if (cameraStream) {
                     cameraStream.getTracks().forEach(track => track.stop());
@@ -873,7 +1506,7 @@
                     selectedImageFile = file;
                     const reader = new FileReader();
                     reader.onload = (e) => {
-                        imagePreview.src = e.target.result; // CORRIGIDO AQUI
+                        imagePreview.src = e.target.result;
                         imagePreview.classList.remove('hidden');
                         imagePreviewPlaceholder.classList.add('hidden');
                         recognizeBtn.disabled = false;
@@ -925,7 +1558,7 @@
                     const latexText = text
                         .replace(/\*/g, '\\cdot ')
                         .replace(/\//g, '\\frac')
-                        .replace(/÷/g, '\\frac') // CORRIGIDO
+                        .replace(/÷/g, '\\frac')
                         .replace(/\n/g, ' ');
                     mathField.latex(latexText);
                     
@@ -946,21 +1579,17 @@
 
             // --- Attach Listeners ---
             calculateBtn.addEventListener('click', performCalculation);
-            document.querySelectorAll('input[name="operation"]').forEach(radio => radio.addEventListener('change', toggleIntegralLimits));
-            limitAInput.addEventListener('input', updateFunctionDisplay); // NOVO
-            limitBInput.addEventListener('input', updateFunctionDisplay); // NOVO
-            scanBtnHeader.addEventListener('click', openScanModal); // NOVO
-            // NOVO: Clicar no display foca o editor escondido
+            document.querySelectorAll('input[name="operation"]').forEach(radio => radio.addEventListener('change', handleOperationChange));
+            
+            scanBtnHeader.addEventListener('click', openScanModal);
             document.getElementById('function-display-area').addEventListener('click', () => {
                 mathField.focus();
             });
 
-            // --- NOVO: Listeners da Navegação Inferior ---
             navBtnCalc.addEventListener('click', () => switchView('calculator'));
-            navBtnHistory.addEventListener('click', openHistoryView); // ATUALIZADO
-            navBtnOptions.addEventListener('click', () => switchView('options')); // NOVO
+            navBtnHistory.addEventListener('click', openHistoryView);
+            navBtnOptions.addEventListener('click', () => switchView('options'));
 
-            // --- NOVO: Listeners dos Filtros de Histórico ---
             historySearchInput.addEventListener('input', renderHistoryList);
             
             filterAllBtn.addEventListener('click', () => {
@@ -985,19 +1614,30 @@
             setTimeout(() => {
                 loadingScreen.style.opacity = '0';
                 appContainer.style.opacity = '1';
+                bottomNav.classList.remove('hidden'); 
                 setTimeout(() => {
                     loadingScreen.style.display = 'none';
                 }, 500);
-            }, 10);
+            }, 2500); // Atraso RESTAURADO para 2.5s para permitir a animação da logo
             
-            // NOVO: Sincroniza o toggle do modo escuro ao iniciar
             if (document.documentElement.classList.contains('dark')) {
                 darkModeIndicator.classList.add('translate-x-6');
             }
 
-            mathField.focus(); // NOVO: Foca o editor ao iniciar
-            updateFunctionDisplay(); // NOVO: Chamada inicial
+            mathField.focus();
+            initializeNotation(); // Inicializa a notação persistente
+            // updateFunctionDisplay(); // (Já é chamado por initializeNotation)
+            updateNavActiveState(navBtnCalc); // Define o estado ativo inicial da navegação
             resultOutput.innerHTML = `<p class="text-gray-500 dark:text-gray-400">Construa uma função e clique em "Calcular".</p>`;
+            
+            // Renderiza estáticos KaTeX (botões de rádio, filtros)
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "\\(", right: "\\)", display: false},
+                    {left: "\\[", right: "\\]", display: true}
+                ]
+            });
         };
     </script>
 
